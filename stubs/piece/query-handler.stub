@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use {{ queryNamespace }}\{{ queryClass }};
+use {{ busNamespace }}\Query;
+use {{ busNamespace }}\QueryHandler;
+
+final class {{ class }} implements QueryHandler
+{
+    public function handle(Query $query): mixed
+    {
+        assert($query instanceof {{ queryClass }});
+
+        // TODO: implementer la lecture.
+
+        return null;
+    }
+}

@@ -1,0 +1,7 @@
+/vendor
+/workbench/bootstrap/cache/*.php
+/workbench/storage
+.phpunit.cache
+.phpunit.result.cache
+.DS_Store
+composer.lock

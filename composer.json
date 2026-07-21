@@ -1,0 +1,71 @@
+{
+    "name": "jorgo69/laravel-cqrs-modules",
+    "description": "Generateur de modules CQRS pour Laravel (make:module / make:cqrs-command / make:cqrs-query). Outil de dev uniquement, aucun couplage runtime.",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ibra Le Jorgo",
+            "email": "ibralejorgo@gmail.com",
+            "homepage": "https://github.com/Jorgo69"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/console": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/filesystem": "^11.0|^12.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "laravel/prompts": "^0.1.24|^0.3"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "phpunit/phpunit": "^11.5",
+        "laravel/pint": "^1.24"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jorgo69\\LaravelCqrsModules\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jorgo69\\LaravelCqrsModules\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jorgo69\\LaravelCqrsModules\\LaravelCqrsModulesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "lint": [
+            "@php vendor/bin/pint --ansi"
+        ]
+    }
+}

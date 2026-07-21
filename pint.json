@@ -1,0 +1,10 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "workbench",
+        "vendor"
+    ],
+    "rules": {
+        "phpdoc_separation": false
+    }
+}

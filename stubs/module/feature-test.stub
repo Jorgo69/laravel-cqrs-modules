@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+final class {{ class }} extends TestCase
+{
+    use RefreshDatabase;
+
+    public function test_module_boots(): void
+    {
+        $this->assertTrue(true);
+    }
+}

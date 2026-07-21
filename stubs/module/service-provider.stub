@@ -1,0 +1,40 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use {{ busNamespace }}\{{ busCommandClass }};
+use {{ busNamespace }}\{{ busQueryClass }};
+use Illuminate\Support\ServiceProvider;
+
+final class {{ class }} extends ServiceProvider
+{
+    public function register(): void
+    {
+        //
+    }
+
+    public function boot(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->{{ registerRoutesMethod }}();
+        $this->{{ registerHandlersMethod }}();
+    }
+
+    private function {{ registerRoutesMethod }}(): void
+    {
+        $this->loadRoutesFrom(__DIR__ . '/../routes.php');
+    }
+
+    private function {{ registerHandlersMethod }}(): void
+    {
+        /** @var {{ busCommandClass }} ${{ busCommandVariable }} */
+        ${{ busCommandVariable }} = $this->app->make({{ busCommandClass }}::class);
+        // ${{ busCommandVariable }}->register(SomeCommand::class, SomeHandler::class);
+
+        /** @var {{ busQueryClass }} ${{ busQueryVariable }} */
+        ${{ busQueryVariable }} = $this->app->make({{ busQueryClass }}::class);
+        // ${{ busQueryVariable }}->register(SomeQuery::class, SomeHandler::class);
+    }
+}
