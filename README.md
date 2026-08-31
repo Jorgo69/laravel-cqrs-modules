@@ -109,6 +109,11 @@ automatiquement.
 
 ## Commandes
 
+> Référence complète (toutes les options, comment le package fonctionne une
+> fois installé, jusqu'où et comment le personnaliser, complémentaires
+> recommandés pour un projet API) : voir **`USAGE.md`**. Ce qui suit est un
+> résumé rapide.
+
 ### `php artisan make:module {Name}`
 
 Scaffold un module complet : `Commands/ Queries/ Handlers/ DTOs/ Enums/

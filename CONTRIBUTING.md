@@ -229,9 +229,12 @@ avec :
 2. Un changement = une PR — évitez de mélanger plusieurs sujets non liés.
 3. Tests + Pint verts avant d'ouvrir la PR (`composer test && composer test:lint`) —
    la CI GitHub Actions (`.github/workflows/tests.yml`) relance automatiquement les
-   deux sur PHP 8.2/8.3/8.4 dès l'ouverture, et les 3 checks sont **requis** par la
-   protection de `main` (voir "Protection de `main`" plus haut) : sans eux tous verts,
-   impossible de merger, quel que soit qui vous êtes.
+   deux sur PHP 8.2/8.3/8.4 dès l'ouverture (plus un `php -l` sur tout le repo,
+   `workbench/` inclus — attrape les erreurs fatales de parsing qu'un fichier
+   jamais chargé par les tests eux-mêmes laisserait passer), et les 3 checks
+   sont **requis** par la protection de `main` (voir "Protection de `main`"
+   plus haut) : sans eux tous verts, impossible de merger, quel que soit qui
+   vous êtes.
 4. Message de commit au format [Conventional Commits](https://www.conventionalcommits.org/)
    (`feat:`, `fix:`, `docs:`, `test:`, `chore:`...) — le premier commit de ce
    repo (`feat: generateur CQRS modulaire pour Laravel`) donne le ton attendu.
