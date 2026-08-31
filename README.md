@@ -10,6 +10,29 @@ ci-dessous).
 **Auteur :** Ibra Le Jorgo — ibralejorgo@gmail.com — [github.com/Jorgo69](https://github.com/Jorgo69)
 **Licence :** MIT (voir `LICENSE.md`) — projet ouvert, contributions bienvenues (voir `CONTRIBUTING.md`).
 
+## Compatibilité
+
+| PHP | Laravel |
+|---|---|
+| 8.2, 8.3, 8.4 | 11.x, 12.x |
+| 8.3, 8.4 (**pas 8.2**) | 13.x |
+
+Laravel 13 lui-même exige PHP ^8.3 — impossible de l'utiliser sur PHP 8.2,
+quel que soit ce package. Ce n'est jamais un souci en pratique (un projet
+Laravel 13 tourne forcément déjà sur PHP 8.3+), mais bon à savoir si vous
+gérez plusieurs projets sur des PHP différents.
+
+**Ce qui est réellement vérifié par la CI aujourd'hui** (`.github/workflows/tests.yml`) :
+PHP 8.2/8.3/8.4, mais toujours contre la même version de Laravel — celle que
+`orchestra/testbench ^10.0` (`require-dev`) résout par défaut, actuellement
+Laravel 12. La compatibilité Laravel 13 a été vérifiée manuellement sur un
+vrai projet consommateur ([wuri-anip-api](https://github.com/Jorgo69)), pas
+encore par la CI de ce package. La compatibilité Laravel 11 est une
+extrapolation raisonnable (le code du package n'utilise que des API stables
+d'`illuminate/console`/`support`/`filesystem`, inchangées depuis longtemps)
+mais n'a jamais été testée automatiquement non plus. Une vraie matrice CI
+multi-Laravel serait bienvenue en contribution — voir `CONTRIBUTING.md`.
+
 ## Principe
 
 Ce package ne fournit **pas** un Bus tout fait à importer dans votre code. Il
@@ -155,6 +178,8 @@ embarqués.
   une autre convention.
 - Pas encore soumis à Packagist (voir "Installation" ci-dessus pour installer
   dès maintenant sans Packagist).
+- CI actuelle testée sur une seule version de Laravel à la fois (voir
+  "Compatibilité" ci-dessus) — pas encore de vraie matrice multi-Laravel.
 
 ## Tests
 
