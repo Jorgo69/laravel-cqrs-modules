@@ -85,8 +85,8 @@ Dans le `composer.json` du projet consommateur :
 ```
 
 ```bash
-composer require --dev jorgo69/laravel-cqrs-modules:dev-main
-# ou une version taguée si des tags existent : jorgo69/laravel-cqrs-modules:^1.0
+composer require --dev jorgo69/laravel-cqrs-modules:^1.0
+# ou la dernière version non taguée : jorgo69/laravel-cqrs-modules:dev-main
 php artisan cqrs-modules:install
 ```
 
