@@ -15,6 +15,8 @@ versionnage suivant [SemVer](https://semver.org/lang/fr/).
 - README : section "Installation rapide" tout en haut, avant Compatibilité —
   la commande d'installation était trop enterrée pour être vue au premier
   coup d'œil.
+- `SECURITY.md` (comment signaler une vulnérabilité, versions supportées) et
+  templates GitHub (`.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md`).
 
 ## [1.0.0] - 2026-08-31
 

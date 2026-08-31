@@ -217,14 +217,19 @@ avant d'écrire le test automatisé correspondant.
 
 ## Signaler un bug / proposer une fonctionnalité
 
-Ouvrez une [issue GitHub](https://github.com/Jorgo69/laravel-cqrs-modules/issues)
-avec :
-- La commande exacte lancée et son résultat.
-- La version de Laravel/PHP utilisée.
-- Pour un bug : le comportement attendu vs. observé, idéalement avec un test
-  qui le reproduit (`tests/Feature/`).
+**Vulnérabilité de sécurité ?** Pas d'issue publique — voir `SECURITY.md`
+(GitHub Security Advisories ou email direct).
+
+Pour tout le reste, ouvrez une [issue GitHub](https://github.com/Jorgo69/laravel-cqrs-modules/issues) :
+un template s'ouvre automatiquement (Bug / Proposition de fonctionnalité,
+`.github/ISSUE_TEMPLATE/`) et demande déjà l'essentiel — commande exacte
+lancée et résultat, version Laravel/PHP, comportement attendu vs. observé,
+idéalement avec un test qui le reproduit (`tests/Feature/`).
 
 ## Process de pull request
+
+Ouvrir la PR pré-remplit une checklist (`.github/PULL_REQUEST_TEMPLATE.md`)
+qui reprend les points ci-dessous — pratique pour ne rien oublier.
 
 1. Fork + branche depuis `main` en suivant la convention ci-dessus
    (`git checkout -b feature/ma-fonctionnalite`).
