@@ -121,10 +121,12 @@ Ce n'est pas qu'une règle de bonne conduite — GitHub **refuse techniquement**
 tout `git push` direct sur `main`, même pour le mainteneur. Concrètement,
 depuis une branche protégée :
 - **Pull request obligatoire** pour tout changement — aucune exception.
-- **CI obligatoire et verte** avant de pouvoir merger : les 3 checks
-  `PHP 8.2` / `PHP 8.3` / `PHP 8.4` (`.github/workflows/tests.yml`) doivent
-  tous passer. Le bouton "Merge" reste grisé tant que ce n'est pas le cas —
-  vous verrez l'état de chaque check directement dans la PR.
+- **CI obligatoire et verte** avant de pouvoir merger : les 5 checks
+  `PHP 8.2 - Laravel ^12.0` / `PHP 8.3 - Laravel ^12.0` / `PHP 8.4 - Laravel
+  ^12.0` / `PHP 8.3 - Laravel ^13.0` / `PHP 8.4 - Laravel ^13.0`
+  (`.github/workflows/tests.yml`) doivent tous passer. Le bouton "Merge"
+  reste grisé tant que ce n'est pas le cas — vous verrez l'état de chaque
+  check directement dans la PR.
 - **Conversations résolues** avant de pouvoir merger (toute discussion ouverte
   sur la PR doit être marquée "Resolved").
 - **0 review humaine exigée** pour l'instant (mainteneur solo au moment de
@@ -229,12 +231,13 @@ avec :
 2. Un changement = une PR — évitez de mélanger plusieurs sujets non liés.
 3. Tests + Pint verts avant d'ouvrir la PR (`composer test && composer test:lint`) —
    la CI GitHub Actions (`.github/workflows/tests.yml`) relance automatiquement les
-   deux sur PHP 8.2/8.3/8.4 dès l'ouverture (plus un `php -l` sur tout le repo,
-   `workbench/` inclus — attrape les erreurs fatales de parsing qu'un fichier
-   jamais chargé par les tests eux-mêmes laisserait passer), et les 3 checks
-   sont **requis** par la protection de `main` (voir "Protection de `main`"
-   plus haut) : sans eux tous verts, impossible de merger, quel que soit qui
-   vous êtes.
+   deux sur 5 combinaisons PHP × Laravel (12.x sur 8.2/8.3/8.4, 13.x sur
+   8.3/8.4 — voir "Compatibilité" dans `README.md`) dès l'ouverture (plus un
+   `php -l` sur tout le repo par jambe, `workbench/` inclus — attrape les
+   erreurs fatales de parsing qu'un fichier jamais chargé par les tests
+   eux-mêmes laisserait passer), et les 5 checks sont **requis** par la
+   protection de `main` (voir "Protection de `main`" plus haut) : sans eux
+   tous verts, impossible de merger, quel que soit qui vous êtes.
 4. Message de commit au format [Conventional Commits](https://www.conventionalcommits.org/)
    (`feat:`, `fix:`, `docs:`, `test:`, `chore:`...) — le premier commit de ce
    repo (`feat: generateur CQRS modulaire pour Laravel`) donne le ton attendu.

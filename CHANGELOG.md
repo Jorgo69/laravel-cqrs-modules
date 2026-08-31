@@ -16,11 +16,21 @@ Packagist (à venir) ou directement depuis GitHub (`dev-main`), voir
 - Générateur de modules CQRS : `make:module`, `make:cqrs-command`,
   `make:cqrs-query`, installeur `cqrs-modules:install` (copie du Bus minimal
   dans l'application consommatrice).
-- Support Laravel 11.x, 12.x et 13.x (PHP 8.2/8.3/8.4 selon la version de
-  Laravel — voir "Compatibilité" dans `README.md`).
+- Support Laravel 11.x (best-effort, non testé par CI), 12.x et 13.x (PHP
+  8.2/8.3/8.4 selon la version de Laravel — voir "Compatibilité" dans
+  `README.md`).
 - Licence MIT, projet ouvert aux contributions (`CONTRIBUTING.md`).
 - Guide d'utilisation et de personnalisation complet (`USAGE.md`).
-- CI GitHub Actions (matrice PHP 8.2/8.3/8.4, tests + lint + syntax check).
+- `.gitattributes` (`export-ignore`) pour un dist Composer propre.
+- CI GitHub Actions : vraie matrice multi-Laravel (Laravel 12.x sur PHP
+  8.2/8.3/8.4, Laravel 13.x sur PHP 8.3/8.4 — 5 combinaisons), tests + lint +
+  syntax check sur chacune.
+
+### Changé
+
+- Laravel 11 retiré de la matrice CI (support sécurité upstream terminé le
+  12 mars 2026, plus aucune version 11.x resolvable via Composer sans
+  advisory de sécurité) — reste accepté dans `composer.json` en best-effort.
 
 ### Corrigé
 
