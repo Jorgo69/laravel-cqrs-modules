@@ -1,8 +1,10 @@
 {
     "name": "jorgo69/laravel-cqrs-modules",
     "description": "Generateur de modules CQRS pour Laravel (make:module / make:cqrs-command / make:cqrs-query). Outil de dev uniquement, aucun couplage runtime.",
+    "keywords": ["laravel", "cqrs", "code-generator", "modules", "artisan"],
+    "homepage": "https://github.com/Jorgo69/laravel-cqrs-modules",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ibra Le Jorgo",
@@ -10,11 +12,15 @@
             "homepage": "https://github.com/Jorgo69"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Jorgo69/laravel-cqrs-modules/issues",
+        "source": "https://github.com/Jorgo69/laravel-cqrs-modules"
+    },
     "require": {
         "php": "^8.2",
-        "illuminate/console": "^11.0|^12.0",
-        "illuminate/support": "^11.0|^12.0",
-        "illuminate/filesystem": "^11.0|^12.0",
+        "illuminate/console": "^11.0|^12.0|^13.0",
+        "illuminate/support": "^11.0|^12.0|^13.0",
+        "illuminate/filesystem": "^11.0|^12.0|^13.0",
         "spatie/laravel-package-tools": "^1.16",
         "laravel/prompts": "^0.1.24|^0.3"
     },
@@ -66,6 +72,12 @@
         ],
         "lint": [
             "@php vendor/bin/pint --ansi"
+        ],
+        "test": [
+            "@php vendor/bin/phpunit --colors=always"
+        ],
+        "test:lint": [
+            "@php vendor/bin/pint --test --ansi"
         ]
     }
 }

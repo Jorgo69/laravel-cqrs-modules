@@ -1,11 +1,14 @@
 # jorgo69/laravel-cqrs-modules
 
-Générateur de modules CQRS pour Laravel. Package privé (pas sur Packagist),
-outil de dev uniquement — aucune dépendance runtime dans les projets qui
-l'installent.
+[![Tests](https://github.com/Jorgo69/laravel-cqrs-modules/actions/workflows/tests.yml/badge.svg)](https://github.com/Jorgo69/laravel-cqrs-modules/actions/workflows/tests.yml)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-green)](LICENSE.md)
+
+Générateur de modules CQRS pour Laravel. Outil de dev uniquement — aucune
+dépendance runtime dans les projets qui l'installent (voir "Principe"
+ci-dessous).
 
 **Auteur :** Ibra Le Jorgo — ibralejorgo@gmail.com — [github.com/Jorgo69](https://github.com/Jorgo69)
-**Licence :** propriétaire, tous droits réservés (voir `LICENSE.md`).
+**Licence :** MIT (voir `LICENSE.md`) — projet ouvert, contributions bienvenues (voir `CONTRIBUTING.md`).
 
 ## Principe
 
@@ -19,9 +22,46 @@ propriétaire, vous pouvez le faire évoluer librement projet par projet.
 Conséquence : ce package peut rester en `require-dev` dans vos projets. Il ne
 sert qu'à générer du code, jamais à l'exécuter en production.
 
-## Installation (projet privé, pas Packagist)
+## Installation
 
-Dans le `composer.json` du projet qui doit utiliser le générateur :
+### Le plus simple (une fois publié sur Packagist)
+
+```bash
+composer require --dev jorgo69/laravel-cqrs-modules
+php artisan cqrs-modules:install
+```
+
+*(Pas encore soumis à [packagist.org](https://packagist.org) — voir les deux méthodes ci-dessous en attendant, toutes les deux fonctionnelles dès aujourd'hui.)*
+
+### Directement depuis GitHub (équivalent de `npm install git+...`)
+
+Composer sait installer un package directement depuis un dépôt Git, sans
+passer par Packagist — utile pour tester la dernière version sur `main`, ou
+pour toute personne qui préfère ne pas attendre la publication officielle.
+Dans le `composer.json` du projet consommateur :
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Jorgo69/laravel-cqrs-modules"
+        }
+    ]
+}
+```
+
+```bash
+composer require --dev jorgo69/laravel-cqrs-modules:dev-main
+# ou une version taguée si des tags existent : jorgo69/laravel-cqrs-modules:^1.0
+php artisan cqrs-modules:install
+```
+
+### En développement local (monorepo / plusieurs projets sur la même machine)
+
+Pratique quand vous développez le package et un projet qui le consomme côte à
+côte — chaque modification du package est immédiatement visible dans le
+projet, sans réinstaller :
 
 ```json
 {
@@ -113,16 +153,23 @@ embarqués.
 - Un seul CommandBus + un seul QueryBus par projet.
 - Pas de commande de migration rétroactive pour des modules déjà écrits avec
   une autre convention.
-- Pas de publication Packagist (privé, volontairement).
+- Pas encore soumis à Packagist (voir "Installation" ci-dessus pour installer
+  dès maintenant sans Packagist).
 
 ## Tests
 
 ```bash
 composer install
-vendor/bin/phpunit
-vendor/bin/pint --test
+composer test        # phpunit
+composer test:lint    # pint --test (vérifie sans modifier)
 ```
 
 Utilise `orchestra/testbench` + `orchestra/workbench` — les commandes
 s'exécutent contre une véritable application Laravel de test (pas de mocks
 sur le système de fichiers).
+
+## Contribuer
+
+Les issues et pull requests sont les bienvenues — voir `CONTRIBUTING.md` pour
+le détail (mise en place de l'environnement, conventions de code, process de
+PR).

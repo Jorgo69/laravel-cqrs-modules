@@ -29,6 +29,16 @@ use Jorgo69\LaravelCqrsModules\Support\StubRenderer;
  */
 trait GeneratesModulePiece
 {
+    /**
+     * Génère la paire piece+Handler et l'enregistre dans `registerHandlers()`
+     * si `$register` est vrai. Échoue explicitement si le module cible n'a pas
+     * encore été scaffoldé par `make:module`.
+     *
+     * @param  string  $moduleName  Nom du module existant (StudlyCase attendu par `make:module`).
+     * @param  string  $baseName  Nom de base sans suffixe (ex: "CreateWidget", pas "CreateWidgetCommand").
+     * @param  string  $kind  Toujours 'Command' ou 'Query' — pilote dossier/namespace/classe du Bus.
+     * @return int self::SUCCESS ou self::FAILURE.
+     */
     private function generatePiece(
         Filesystem $files,
         StubRenderer $renderer,
@@ -93,6 +103,14 @@ trait GeneratesModulePiece
         return $this->registerInHandlers($mutator, $module, $kind, $pieceFqcn, $handlerFqcn) ? self::SUCCESS : self::FAILURE;
     }
 
+    /**
+     * Insère `$busVariable->register(Piece::class, Handler::class);` dans le
+     * corps de `registerHandlers()` du Provider du module, via
+     * `GuardedFileMutator` (abandonne proprement si la forme du fichier a
+     * changé au point de ne plus reconnaître un point d'ancrage sûr).
+     *
+     * @return bool true si insérée ou déjà présente, false si abandonnée (message d'erreur déjà affiché).
+     */
     private function registerInHandlers(
         GuardedFileMutator $mutator,
         ModuleNameResolver $module,
