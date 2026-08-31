@@ -1,0 +1,17 @@
+* text=auto eol=lf
+
+# Fichiers/dossiers de dev uniquement, jamais necessaires chez un consommateur
+# du package (composer require) — evite qu'ils gonflent le vendor/ de chaque
+# projet qui installe ce package.
+/.github            export-ignore
+/tests              export-ignore
+/workbench          export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+/phpunit.xml.dist   export-ignore
+/testbench.yaml     export-ignore
+/pint.json          export-ignore
+/composer.lock      export-ignore
+/CONTRIBUTING.md    export-ignore
+/USAGE.md           export-ignore
+/CHANGELOG.md       export-ignore

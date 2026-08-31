@@ -205,3 +205,5 @@ le détail (structure du projet, signature des fichiers, stratégie de
 branches, mise en place de l'environnement, conventions de code, process de
 PR). `main` est protégée : toute contribution passe par une PR avec CI verte
 (PHP 8.2/8.3/8.4), pas d'exception.
+
+Historique des changements : voir `CHANGELOG.md`.
