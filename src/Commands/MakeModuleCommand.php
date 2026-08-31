@@ -34,6 +34,15 @@ final class MakeModuleCommand extends Command
 
     protected $description = 'Scaffold un module CQRS (Commands, Queries, Handlers, DTOs, Enums, Models, Controllers, Requests, Providers, Database)';
 
+    /**
+     * Pipeline : crée les dossiers du module, rend le ServiceProvider et les
+     * routes, génère un test Feature de départ si demandé, puis enregistre
+     * automatiquement le Provider dans `bootstrap/providers.php` (sauf
+     * `--no-register`). Relancer sur un module déjà existant est sans danger
+     * — chaque étape signale "déjà présent" au lieu d'écraser.
+     *
+     * @return int self::SUCCESS ou self::FAILURE (échec d'enregistrement du Provider).
+     */
     public function handle(Filesystem $files, StubRenderer $renderer, GuardedFileMutator $mutator): int
     {
         $resolver = new ModuleNameResolver((string) $this->argument('name'));

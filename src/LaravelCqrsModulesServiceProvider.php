@@ -25,6 +25,11 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 final class LaravelCqrsModulesServiceProvider extends PackageServiceProvider
 {
+    /**
+     * Déclaration spatie/laravel-package-tools : fichier de config publiable,
+     * les 3 commandes Artisan du package, et l'installeur `cqrs-modules:install`
+     * (publie la config PUIS copie le Bus dans l'app consommatrice).
+     */
     public function configurePackage(Package $package): void
     {
         $package
@@ -57,6 +62,12 @@ final class LaravelCqrsModulesServiceProvider extends PackageServiceProvider
         ], 'cqrs-modules-stubs');
     }
 
+    /**
+     * Copie les 7 fichiers du Bus minimal (Command/Query/CommandHandler/
+     * QueryHandler/CommandBus/QueryBus/BusServiceProvider) chez le
+     * consommateur, sous le namespace configuré — jamais régénérés ensuite,
+     * le consommateur en devient pleinement propriétaire dès cet instant.
+     */
     private function installBusInfrastructure(InstallCommand $command): void
     {
         $renderer = $this->app->make(StubRenderer::class);

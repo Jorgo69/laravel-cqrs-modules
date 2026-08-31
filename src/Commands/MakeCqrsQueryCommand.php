@@ -31,6 +31,13 @@ final class MakeCqrsQueryCommand extends Command
 
     protected $description = 'Ajoute une Query+Handler dans un module CQRS existant';
 
+    /**
+     * Délègue à `GeneratesModulePiece::generatePiece()` avec `kind: 'Query'`
+     * — voir ce trait pour le détail (le module cible doit déjà exister, sinon
+     * échec explicite invitant à lancer `make:module` d'abord).
+     *
+     * @return int self::SUCCESS ou self::FAILURE.
+     */
     public function handle(Filesystem $files, StubRenderer $renderer, GuardedFileMutator $mutator): int
     {
         return $this->generatePiece(
