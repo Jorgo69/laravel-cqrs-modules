@@ -241,6 +241,10 @@ avec :
 5. Décrivez dans la PR *pourquoi* le changement est nécessaire, pas seulement
    *quoi* — particulièrement utile pour un fix qui corrige un bug rencontré
    sur un projet réel.
+6. Changement visible pour les utilisateurs du package (nouvelle commande,
+   option, comportement, fix de bug) → ajoutez une entrée dans `CHANGELOG.md`
+   (section `[Non publié]`). Un changement purement interne (refacto sans
+   impact, typo) n'a pas besoin d'entrée.
 
 ## Licence
 
