@@ -7,9 +7,13 @@ versionnage suivant [SemVer](https://semver.org/lang/fr/).
 
 ## [Non publié]
 
-Pas encore de version taguée — package installable dès aujourd'hui via
-Packagist (à venir) ou directement depuis GitHub (`dev-main`), voir
-"Installation" dans `README.md`.
+Rien pour l'instant.
+
+## [1.0.0] - 2026-08-31
+
+Première version taguée — installable dès aujourd'hui directement depuis
+GitHub (`^1.0` ou `dev-main`), voir "Installation" dans `README.md`. Pas
+encore soumise à Packagist.
 
 ### Ajouté
 
@@ -38,4 +42,5 @@ Packagist (à venir) ou directement depuis GitHub (`dev-main`), voir
   provoquant une erreur fatale de parsing lors de `composer build`/`serve`,
   jamais détectée par la suite PHPUnit elle-même.
 
-[Non publié]: https://github.com/Jorgo69/laravel-cqrs-modules/commits/main
+[Non publié]: https://github.com/Jorgo69/laravel-cqrs-modules/compare/v1.0.0...main
+[1.0.0]: https://github.com/Jorgo69/laravel-cqrs-modules/releases/tag/v1.0.0
