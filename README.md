@@ -1,6 +1,8 @@
 # jorgo69/laravel-cqrs-modules
 
 [![Tests](https://github.com/Jorgo69/laravel-cqrs-modules/actions/workflows/tests.yml/badge.svg)](https://github.com/Jorgo69/laravel-cqrs-modules/actions/workflows/tests.yml)
+[![Version Packagist](https://img.shields.io/packagist/v/jorgo69/laravel-cqrs-modules)](https://packagist.org/packages/jorgo69/laravel-cqrs-modules)
+[![Téléchargements Packagist](https://img.shields.io/packagist/dt/jorgo69/laravel-cqrs-modules)](https://packagist.org/packages/jorgo69/laravel-cqrs-modules)
 [![Licence MIT](https://img.shields.io/badge/licence-MIT-green)](LICENSE.md)
 
 Générateur de modules CQRS pour Laravel. Outil de dev uniquement — aucune
@@ -57,21 +59,29 @@ sert qu'à générer du code, jamais à l'exécuter en production.
 
 ## Installation
 
-### Le plus simple (une fois publié sur Packagist)
+### Depuis Packagist (méthode recommandée)
+
+Le package est publié sur [packagist.org/packages/jorgo69/laravel-cqrs-modules](https://packagist.org/packages/jorgo69/laravel-cqrs-modules) — aucune configuration `repositories` à ajouter, ça fonctionne comme n'importe quel package Composer classique :
 
 ```bash
 composer require --dev jorgo69/laravel-cqrs-modules
 php artisan cqrs-modules:install
 ```
 
-*(Pas encore soumis à [packagist.org](https://packagist.org) — voir les deux méthodes ci-dessous en attendant, toutes les deux fonctionnelles dès aujourd'hui.)*
+`--dev` est volontaire : ce package ne sert qu'à générer du code (voir
+"Principe" ci-dessus), il n'a rien à faire en production. Sans version
+précisée, Composer installe la dernière version taguée stable (`v1.0.0`
+aujourd'hui). Pour figer une branche majeure : `jorgo69/laravel-cqrs-modules:^1.0`.
+Le package est synchronisé automatiquement avec Packagist à chaque push sur
+`main` et chaque nouveau tag (webhook GitHub actif) — jamais besoin d'attendre
+une republication manuelle.
 
 ### Directement depuis GitHub (équivalent de `npm install git+...`)
 
-Composer sait installer un package directement depuis un dépôt Git, sans
-passer par Packagist — utile pour tester la dernière version sur `main`, ou
-pour toute personne qui préfère ne pas attendre la publication officielle.
-Dans le `composer.json` du projet consommateur :
+Alternative à Packagist : Composer sait installer un package directement
+depuis un dépôt Git. Utile pour tester une branche précise, un commit non
+encore taggé, ou tout simplement si vous préférez ne pas dépendre de
+Packagist. Dans le `composer.json` du projet consommateur :
 
 ```json
 {
@@ -191,8 +201,6 @@ embarqués.
 - Un seul CommandBus + un seul QueryBus par projet.
 - Pas de commande de migration rétroactive pour des modules déjà écrits avec
   une autre convention.
-- Pas encore soumis à Packagist (voir "Installation" ci-dessus pour installer
-  dès maintenant sans Packagist).
 - Laravel 11 non couvert par la CI, upstream EOL sécurité — voir
   "Compatibilité" ci-dessus.
 
