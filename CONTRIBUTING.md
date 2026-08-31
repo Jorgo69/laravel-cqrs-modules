@@ -3,6 +3,17 @@
 Merci de l'intérêt porté à ce package ! Issues, questions et pull requests
 sont les bienvenues, en français ou en anglais.
 
+**Sommaire** : [Se repérer dans le projet](#se-repérer-dans-le-projet) ·
+[Signature des fichiers](#signature-des-fichiers) ·
+[Stratégie de branches](#stratégie-de-branches) ·
+[Mise en place de l'environnement](#mise-en-place-de-lenvironnement) ·
+[Lancer la suite de tests](#lancer-la-suite-de-tests) ·
+[Explorer en conditions réelles](#explorer-le-package-en-conditions-réelles) ·
+[Conventions de code](#conventions-de-code) ·
+[Signaler un bug](#signaler-un-bug--proposer-une-fonctionnalité) ·
+[Process de pull request](#process-de-pull-request) ·
+[Licence](#licence)
+
 ## Se repérer dans le projet
 
 ```
@@ -100,11 +111,29 @@ rejetée pour autant ; elle sera juste complétée avant merge.
 
 ## Stratégie de branches
 
-`main` est la branche stable, toujours déployable — on n'y committe jamais
-directement (même le mainteneur passe par une PR une fois le projet ouvert
-aux contributions). Un [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)
+`main` est la branche stable, toujours déployable. Un [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)
 simple, pas de `develop`/`release` séparés (package trop petit pour justifier
 une GitFlow complète) :
+
+### Protection de `main` (réellement activée, pas juste une convention)
+
+Ce n'est pas qu'une règle de bonne conduite — GitHub **refuse techniquement**
+tout `git push` direct sur `main`, même pour le mainteneur. Concrètement,
+depuis une branche protégée :
+- **Pull request obligatoire** pour tout changement — aucune exception.
+- **CI obligatoire et verte** avant de pouvoir merger : les 3 checks
+  `PHP 8.2` / `PHP 8.3` / `PHP 8.4` (`.github/workflows/tests.yml`) doivent
+  tous passer. Le bouton "Merge" reste grisé tant que ce n'est pas le cas —
+  vous verrez l'état de chaque check directement dans la PR.
+- **Conversations résolues** avant de pouvoir merger (toute discussion ouverte
+  sur la PR doit être marquée "Resolved").
+- **0 review humaine exigée** pour l'instant (mainteneur solo au moment de
+  l'ouverture du projet) — la CI est la seule porte de qualité automatique.
+  Une PR qui passe la CI peut être mergée dès qu'elle est ouverte.
+- Force-push et suppression de `main` bloqués pour tout le monde.
+
+Si votre `git push origin main` est rejeté avec `protected branch hook
+declined` : c'est normal, ouvrez une PR à la place (voir ci-dessous).
 
 | Préfixe de branche | Pour quoi |
 |---|---|
@@ -199,8 +228,10 @@ avec :
    (`git checkout -b feature/ma-fonctionnalite`).
 2. Un changement = une PR — évitez de mélanger plusieurs sujets non liés.
 3. Tests + Pint verts avant d'ouvrir la PR (`composer test && composer test:lint`) —
-   la CI GitHub Actions (`.github/workflows/tests.yml`) relance les deux automatiquement
-   sur PHP 8.2/8.3/8.4 dès que la PR est ouverte.
+   la CI GitHub Actions (`.github/workflows/tests.yml`) relance automatiquement les
+   deux sur PHP 8.2/8.3/8.4 dès l'ouverture, et les 3 checks sont **requis** par la
+   protection de `main` (voir "Protection de `main`" plus haut) : sans eux tous verts,
+   impossible de merger, quel que soit qui vous êtes.
 4. Message de commit au format [Conventional Commits](https://www.conventionalcommits.org/)
    (`feat:`, `fix:`, `docs:`, `test:`, `chore:`...) — le premier commit de ce
    repo (`feat: generateur CQRS modulaire pour Laravel`) donne le ton attendu.
