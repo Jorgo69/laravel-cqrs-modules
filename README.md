@@ -171,5 +171,7 @@ sur le système de fichiers).
 ## Contribuer
 
 Les issues et pull requests sont les bienvenues — voir `CONTRIBUTING.md` pour
-le détail (mise en place de l'environnement, conventions de code, process de
-PR).
+le détail (structure du projet, signature des fichiers, stratégie de
+branches, mise en place de l'environnement, conventions de code, process de
+PR). `main` est protégée : toute contribution passe par une PR avec CI verte
+(PHP 8.2/8.3/8.4), pas d'exception.
