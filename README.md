@@ -12,26 +12,36 @@ ci-dessous).
 
 ## Compatibilité
 
-| PHP | Laravel |
-|---|---|
-| 8.2, 8.3, 8.4 | 11.x, 12.x |
-| 8.3, 8.4 (**pas 8.2**) | 13.x |
+| PHP | Laravel | Testé par la CI |
+|---|---|---|
+| 8.2, 8.3, 8.4 | 12.x | Oui (`.github/workflows/tests.yml`) |
+| 8.3, 8.4 (**pas 8.2**) | 13.x | Oui |
+| 8.2, 8.3, 8.4 | 11.x | Non — voir ci-dessous |
 
 Laravel 13 lui-même exige PHP ^8.3 — impossible de l'utiliser sur PHP 8.2,
 quel que soit ce package. Ce n'est jamais un souci en pratique (un projet
 Laravel 13 tourne forcément déjà sur PHP 8.3+), mais bon à savoir si vous
 gérez plusieurs projets sur des PHP différents.
 
-**Ce qui est réellement vérifié par la CI aujourd'hui** (`.github/workflows/tests.yml`) :
-PHP 8.2/8.3/8.4, mais toujours contre la même version de Laravel — celle que
-`orchestra/testbench ^10.0` (`require-dev`) résout par défaut, actuellement
-Laravel 12. La compatibilité Laravel 13 a été vérifiée manuellement sur un
-vrai projet consommateur ([wuri-anip-api](https://github.com/Jorgo69)), pas
-encore par la CI de ce package. La compatibilité Laravel 11 est une
-extrapolation raisonnable (le code du package n'utilise que des API stables
-d'`illuminate/console`/`support`/`filesystem`, inchangées depuis longtemps)
-mais n'a jamais été testée automatiquement non plus. Une vraie matrice CI
-multi-Laravel serait bienvenue en contribution — voir `CONTRIBUTING.md`.
+**La CI teste réellement 5 combinaisons PHP × Laravel** (Laravel 12 sur
+8.2/8.3/8.4, Laravel 13 sur 8.3/8.4), pas seulement plusieurs PHP contre une
+seule version de Laravel.
+
+**Laravel 11 n'est plus dans la matrice CI, volontairement.** Son support
+sécurité s'est terminé le 12 mars 2026 : au moment d'écrire ceci,
+`composer require laravel/framework:^11.0` ne se résout plus du tout, car
+Packagist signale désormais **toutes** les versions 11.x par des advisories
+de sécurité (constaté directement, pas une supposition) — il n'existe plus de
+version 11.x "propre" contre laquelle tester. Le package continue d'accepter
+`illuminate/console`/`support`/`filesystem` en `^11.0` dans son `composer.json`
+(ce sont des sous-packages, pas `laravel/framework` — un projet déjà en
+Laravel 11 garde son propre lock file et n'est pas forcé de migrer), mais
+cette compatibilité n'est plus couverte par la CI et repose sur le fait que
+le code du package n'utilise que des API stables, inchangées depuis
+longtemps. Si vous êtes encore sur Laravel 11, ça devrait fonctionner, mais
+c'est un "best effort", pas une garantie testée. La compatibilité Laravel 13
+a aussi été vérifiée manuellement sur un vrai projet consommateur
+([wuri-anip-api](https://github.com/Jorgo69)), en plus de la CI.
 
 ## Principe
 
@@ -183,8 +193,8 @@ embarqués.
   une autre convention.
 - Pas encore soumis à Packagist (voir "Installation" ci-dessus pour installer
   dès maintenant sans Packagist).
-- CI actuelle testée sur une seule version de Laravel à la fois (voir
-  "Compatibilité" ci-dessus) — pas encore de vraie matrice multi-Laravel.
+- Laravel 11 non couvert par la CI, upstream EOL sécurité — voir
+  "Compatibilité" ci-dessus.
 
 ## Tests
 
