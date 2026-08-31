@@ -12,6 +12,18 @@ ci-dessous).
 **Auteur :** Ibra Le Jorgo — ibralejorgo@gmail.com — [github.com/Jorgo69](https://github.com/Jorgo69)
 **Licence :** MIT (voir `LICENSE.md`) — projet ouvert, contributions bienvenues (voir `CONTRIBUTING.md`).
 
+## Installation rapide
+
+```bash
+composer require --dev jorgo69/laravel-cqrs-modules
+php artisan cqrs-modules:install
+```
+
+`--dev` est volontaire, pas une erreur à corriger — ce package ne fait que
+générer du code (voir "Principe" plus bas), il n'a rien à faire en
+production. Autres méthodes d'installation (depuis GitHub directement, en
+local) : section "Installation" complète plus bas.
+
 ## Compatibilité
 
 | PHP | Laravel | Testé par la CI |
