@@ -12,6 +12,9 @@ versionnage suivant [SemVer](https://semver.org/lang/fr/).
 - Package soumis et publié sur [Packagist](https://packagist.org/packages/jorgo69/laravel-cqrs-modules),
   synchronisation automatique activée (webhook GitHub sur push). Badges
   version/téléchargements ajoutés au README.
+- README : section "Installation rapide" tout en haut, avant Compatibilité —
+  la commande d'installation était trop enterrée pour être vue au premier
+  coup d'œil.
 
 ## [1.0.0] - 2026-08-31
 
