@@ -38,6 +38,13 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
+      # Attrape les erreurs fatales de parsing (ex: double `use X as Y`) que
+      # phpunit ne détecte pas s'il ne charge jamais la classe concernée —
+      # cas réel trouvé dans workbench/database/factories/UserFactory.php,
+      # jamais exercée par la suite de tests elle-même.
+      - name: Syntax check (php -l)
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 -P4 php -l
+
       - name: Run tests
         run: composer test
 
