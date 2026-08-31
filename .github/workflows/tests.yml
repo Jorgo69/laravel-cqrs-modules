@@ -1,3 +1,12 @@
+# Matrice PHP uniquement pour l'instant — toujours contre la même version de
+# Laravel (celle qu'`orchestra/testbench ^10.0`, require-dev, résout par
+# défaut : Laravel 12 aujourd'hui). PAS encore une vraie matrice multi-Laravel
+# (11/12/13) : Laravel 13 exige testbench ^11.0 + PHP ^8.3 minimum (exclut
+# PHP 8.2), et au moment d'écrire ceci, `composer audit` bloque par défaut la
+# résolution de plusieurs versions de laravel/framework ^11.x pour cause
+# d'advisories de sécurité connues — à traiter avant d'ajouter cette jambe à
+# la matrice. Voir "Compatibilité" dans README.md pour le détail exact des
+# versions supportées vs. réellement testées ici. Contribution bienvenue.
 name: tests
 
 on:
